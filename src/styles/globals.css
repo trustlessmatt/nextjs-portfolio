@@ -2,26 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: charter;
+  src: url("/public/fonts/Charter_Regular.ttf") format("truetype");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@font-face {
+  font-family: charter-bold;
+  src: url("/public/fonts/Charter_Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: geist-regular;
+  src: url("/public/fonts/Geist-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: geist-bold;
+  src: url("/public/fonts/Geist-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: geist-black;
+  src: url("/public/fonts/Geist-Black.otf") format("opentype");
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  /* Use a radial gradient for this example, but you could also use a linear gradient */
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    #333,
+    #000000 50%,
+    #333 100%
+  );
+  background-size: 200% 200%; /* Ensures that the gradient is larger than the container for a smooth loop */
+  animation: moveBackground 10s linear infinite; /* Adjust time for slower or faster movement */
+  height: 100vh; /* Make sure it covers the whole viewport vertically */
+  width: 100vw; /* Make sure it covers the whole viewport horizontally */
 }
