@@ -1,17 +1,17 @@
-import { Inter } from "next/font/google";
-import { Hero, MovingGradientWrapper, Nav, Pricing } from "@/components";
-
-const inter = Inter({ subsets: ["latin"] });
+import { HomePage, MovingGradientWrapper, Nav } from "@/components";
+import { MAX_WIDTH } from "@/utils/constants";
 
 export default function Home() {
   return (
     <MovingGradientWrapper>
-      <main className={`${inter.className} px-16 w-screen`}>
-        <div className="w-full h-screen">
+      <main
+        className="px-16 w-screen flex flex-col mx-auto"
+        style={{ maxWidth: MAX_WIDTH }}
+      >
+        <div className="flex-1 w-full">
           <Nav />
-          <Hero />
+          <HomePage />
         </div>
-        <Pricing />
       </main>
     </MovingGradientWrapper>
   );

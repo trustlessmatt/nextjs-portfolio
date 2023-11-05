@@ -1,29 +1,54 @@
 import { FC } from "react";
 import { DecodedText } from "@/components";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { smallClickAnimation } from "@/utils/framer.config";
+import { HomeViews, useView } from "@/providers/ViewProvider";
 
 const Hero: FC = () => {
+  const { setView } = useView();
   return (
-    <div className="w-full h-full flex flex-col">
+    <div
+      className="w-full h-full flex flex-col mt-10"
+      style={{ height: `calc(100vh - 196px)` }}
+    >
       <DecodedText
         text="Hello, World!"
         duration={3000}
-        className="text-[120px] font-base-black"
+        className="text-5xl lg:text-[100px] xl:text-[120px] font-base-black"
       />
       <motion.div
-        className="w-full flex justify-end"
+        className="w-full flex flex-col lg:items-end gap-12"
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 3.5 }}
       >
-        <p className="text-secondary font-base text-[40px] leading-[39px] w-1/2 mt-20">
-          I&apos;m Matt Pfeifer. I build surprisingly delightful internet
-          experiences, and use blockchains to help create a more{" "}
-          <span className="text-data">fair</span> and{" "}
-          <span className="text-data">open</span> internet.
+        <p className="text-secondary font-base sm:text-lg lg:text-3xl xl:text-[40px] xl:leading-[39px] sm:w-2/3 mt-8 lg:mt-20">
+          I&apos;m <span className="text-data">Matt Pfeifer</span>. I build
+          surprisingly delightful internet experiences, and use blockchains to
+          help make the internet more <span className="text-data">fair</span>,{" "}
+          <span className="text-data">open</span>, and{" "}
+          <span className="text-data">fun</span>.
         </p>
+        <p className="text-secondary font-base sm:text-lg lg:text-3xl xl:text-[40px] xl:leading-[39px] sm:w-2/3">
+          As a lifelong learner, cutting-edge tech thrills me. The desire to
+          find the next big thing led me to exit my public sector job in 2021 to
+          pursue Blockchain and AI, and live to tell the tale.
+        </p>
+        <div className="sm:w-2/3">
+          <motion.button
+            {...smallClickAnimation}
+            className="text-data font-base text-xl flex items-center gap-1"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 4.8 }}
+            onClick={() => setView(HomeViews.PORTFOLIO)}
+          >
+            <p>View My Work</p>
+            <ArrowRight className="animate-bounce-right" />
+          </motion.button>
+        </div>
       </motion.div>
-      {/* <button className="w-full animate-bounce text-white">more</button> */}
     </div>
   );
 };

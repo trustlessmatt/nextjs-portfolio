@@ -27,25 +27,29 @@
   src: url("/public/fonts/Geist-Black.otf") format("opentype");
 }
 
-@keyframes moveBackground {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
-
 body {
   /* Use a radial gradient for this example, but you could also use a linear gradient */
   background-image: radial-gradient(
-    circle at 50% 50%,
+    circle at 10% 50%,
     #333,
     #000000 50%,
     #333 100%
   );
   background-size: 200% 200%; /* Ensures that the gradient is larger than the container for a smooth loop */
-  animation: moveBackground 10s linear infinite; /* Adjust time for slower or faster movement */
   height: 100vh; /* Make sure it covers the whole viewport vertically */
   width: 100vw; /* Make sure it covers the whole viewport horizontally */
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+.animate-bounce-right {
+  animation: bounce 1s infinite;
 }

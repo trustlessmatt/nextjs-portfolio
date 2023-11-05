@@ -16,6 +16,7 @@ const Nav = dynamic(() => import("./organisms/Nav"));
 const Pricing = dynamic(() => import("./organisms/Pricing"));
 
 // templates
+const HomePage = dynamic(() => import("./templates/HomePage"));
 const MovingGradientWrapper = dynamic(
   () => import("./templates/MovingGradientWrapper")
 );
@@ -28,5 +29,6 @@ export {
   Hero,
   Nav,
   Pricing,
+  HomePage,
   MovingGradientWrapper,
 };

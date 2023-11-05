@@ -1,11 +1,11 @@
-import { MovingGradientWrapper } from "@/components";
+import ViewProvider from "@/providers/ViewProvider";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    // <MovingGradientWrapper>
-    <Component {...pageProps} />
-    // </MovingGradientWrapper>
+    <ViewProvider>
+      <Component {...pageProps} />
+    </ViewProvider>
   );
 }
