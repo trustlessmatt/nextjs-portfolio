@@ -1,3 +1,4 @@
+import { useView } from "@/providers/ViewProvider";
 import { FC, useEffect, useState } from "react";
 
 interface DecodingTextProps {
@@ -18,7 +19,14 @@ const DecodedText: FC<DecodingTextProps> = ({
   );
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
+  const { hasRun, setHasRun } = useView();
+
   useEffect(() => {
+    if (hasRun) {
+      setDisplayedText(text);
+      return;
+    }
+
     if (currentIndex < text.length) {
       let charInterval: number;
       let nextCharTimeout: number;
@@ -53,8 +61,10 @@ const DecodedText: FC<DecodingTextProps> = ({
         clearInterval(charInterval);
         clearTimeout(nextCharTimeout);
       };
+    } else {
+      setHasRun(true);
     }
-  }, [currentIndex, text, duration]);
+  }, [currentIndex, text, duration, hasRun]);
 
   return (
     <p className={`text-white font-base-b ${className}`}>{displayedText}</p>
