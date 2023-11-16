@@ -29,13 +29,7 @@
 
 body {
   /* Use a radial gradient for this example, but you could also use a linear gradient */
-  background-image: radial-gradient(
-    circle at 10% 50%,
-    #333,
-    #000000 50%,
-    #333 100%
-  );
-  background-size: 200% 200%; /* Ensures that the gradient is larger than the container for a smooth loop */
+  background: #000;
   height: 100vh; /* Make sure it covers the whole viewport vertically */
   width: 100vw; /* Make sure it covers the whole viewport horizontally */
 }
