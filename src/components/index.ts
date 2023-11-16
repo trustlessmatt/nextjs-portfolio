@@ -10,6 +10,7 @@ const NavButton = dynamic(() => import("./atoms/NavButton"));
 
 // molecules
 const PricingCard = dynamic(() => import("./molecules/PricingCard"));
+const Project = dynamic(() => import("./molecules/Project"));
 
 // organisms
 const Hero = dynamic(() => import("./organisms/Hero"));
@@ -31,6 +32,7 @@ export {
   MovingGradient,
   NavButton,
   PricingCard,
+  Project,
   // organisms
   Hero,
   Nav,

@@ -23,7 +23,7 @@ const HomePage: FC = () => {
       )}
       {view === HomeViews.PORTFOLIO && (
         <motion.div
-          className="w-full h-full flex flex-col mt-10 overflow-hidden"
+          className="w-full h-full flex flex-col mt-10"
           variants={viewVariants}
           key="portfolio"
           initial="enter"

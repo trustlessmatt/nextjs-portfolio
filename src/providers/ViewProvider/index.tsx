@@ -5,6 +5,7 @@ import {
   useContext,
   useState,
 } from "react";
+import { easeIn } from "framer-motion";
 
 export enum HomeViews {
   HERO = "HERO",
@@ -23,7 +24,7 @@ export const getViewIndex = (view: HomeViews) => {
 export const variants = {
   enter: { opacity: 0, x: 0, transition: { duration: 1 } },
   center: { opacity: 1, x: 0, transition: { duration: 1 } },
-  exit: { opacity: 0, x: -600, transition: { duration: 1 } },
+  exit: { opacity: 0, x: -600, transition: { duration: 1, ease: easeIn } },
 };
 
 export interface IViewContext {
