@@ -13,6 +13,7 @@ const PricingCard = dynamic(() => import("./molecules/PricingCard"));
 const Project = dynamic(() => import("./molecules/Project"));
 
 // organisms
+const About = dynamic(() => import("./organisms/About"));
 const Hero = dynamic(() => import("./organisms/Hero"));
 const Nav = dynamic(() => import("./organisms/Nav"));
 const Portfolio = dynamic(() => import("./organisms/Portfolio"));
@@ -34,6 +35,7 @@ export {
   PricingCard,
   Project,
   // organisms
+  About,
   Hero,
   Nav,
   Portfolio,

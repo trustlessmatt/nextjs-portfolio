@@ -34,7 +34,6 @@ const Hero: FC = () => {
         </p>
         <div className="sm:w-2/3">
           <motion.button
-            {...smallClickAnimation}
             className="text-data font-base text-xl flex items-center gap-1"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
