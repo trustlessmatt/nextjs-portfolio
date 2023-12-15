@@ -28,10 +28,9 @@
 }
 
 body {
-  /* Use a radial gradient for this example, but you could also use a linear gradient */
   background: #000;
-  height: 100vh; /* Make sure it covers the whole viewport vertically */
-  width: 100vw; /* Make sure it covers the whole viewport horizontally */
+  height: 100vh;
+  width: 100vw;
 }
 @keyframes bounce {
   0%,

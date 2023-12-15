@@ -22,9 +22,9 @@ export const getViewIndex = (view: HomeViews) => {
 };
 
 export const variants = {
-  enter: { opacity: 0, x: 0, transition: { duration: 1 } },
-  center: { opacity: 1, x: 0, transition: { duration: 1 } },
-  exit: { opacity: 0, x: -600, transition: { duration: 1, ease: easeIn } },
+  enter: { opacity: 0, x: 0, transition: { duration: 0.6 } },
+  center: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+  exit: { opacity: 0, x: -600, transition: { duration: 0.6, ease: easeIn } },
 };
 
 export interface IViewContext {
