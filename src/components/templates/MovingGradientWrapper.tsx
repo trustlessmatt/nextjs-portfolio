@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 import { useWindowSize } from "@/hooks/useWindowSize";
 import { MovingGradient } from "@/components";
 
@@ -11,20 +11,13 @@ const MovingGradientWrapper: React.FC<MovingGradientBackgroundProps> = ({
 }) => {
   const [screenWidth, _] = useWindowSize();
 
-  const [contentHeight, setContentHeight] = useState<number>();
-
-  // obtain the height of the content
-  useEffect(() => {
-    setContentHeight(document.body.scrollHeight);
-  }, []);
-
   return (
-    <div style={{ height: contentHeight }}>
+    <div style={{ height: "100%" }}>
       <MovingGradient />
       <svg
         width={screenWidth}
-        height={contentHeight}
-        className="absolute top-0 left-0 opacity-5"
+        height="100%"
+        className="fixed top-0 left-0 opacity-5"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
