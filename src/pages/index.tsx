@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <MovingGradientWrapper>
       <main
-        className="px-16 w-screen flex flex-col mx-auto overflow-x-hidden"
+        className="px-16 w-screen min-h-screen flex flex-col mx-auto overflow-x-hidden"
         style={{ maxWidth: MAX_WIDTH }}
       >
         <div className="flex-1 w-full">

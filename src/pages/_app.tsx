@@ -1,4 +1,4 @@
-import ViewProvider from "@/providers/ViewProvider";
+import { ViewProvider } from "@/providers/ViewProvider";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 

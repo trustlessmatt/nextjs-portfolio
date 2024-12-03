@@ -1,93 +1,101 @@
 import {
   createContext,
-  FunctionComponent,
   ReactNode,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { easeIn } from "framer-motion";
 
-export enum HomeViews {
-  HERO = "HERO",
-  PORTFOLIO = "PORTFOLIO",
-  ABOUT = "ABOUT",
-  PRICING = "PRICING",
-}
-
-// Convert enum to array for easy index access
-const viewOrder = Object.values(HomeViews);
-
-export const getViewIndex = (view: HomeViews) => {
-  return viewOrder.indexOf(view);
-};
-
-export const variants = {
+const viewVariantsInitial = {
   enter: { opacity: 0, x: 0, transition: { duration: 0.6 } },
   center: { opacity: 1, x: 0, transition: { duration: 0.6 } },
   exit: { opacity: 0, x: -600, transition: { duration: 0.6, ease: easeIn } },
 };
 
-export interface IViewContext {
+type ViewContextType = {
   view: HomeViews;
   setView: (view: HomeViews) => void;
-  hasRun: boolean;
-  setHasRun: (hasRun: boolean) => void;
-  viewVariants: typeof variants;
+  decodeHasRun: boolean;
+  setDecodeHasRun: (decodeHasRun: boolean) => void;
+  viewVariants: typeof viewVariantsInitial;
+  updateView: (direction: "next" | "prev") => void;
+};
+
+const ViewContext = createContext<ViewContextType | undefined>(undefined);
+
+export enum HomeViews {
+  HOME = "Home",
+  PORTFOLIO = "Portfolio",
+  ABOUT = "About",
+  // PRICING = "Pricing",
 }
+export const getAdjacentView = (
+  current: HomeViews,
+  direction: "next" | "prev"
+): HomeViews | undefined => {
+  const values = Object.values(HomeViews);
+  const currentIndex = values.indexOf(current);
+  const targetIndex =
+    direction === "next" ? currentIndex + 1 : currentIndex - 1;
+  return values[targetIndex] as HomeViews;
+};
 
-export const ViewContext = createContext<IViewContext>({
-  view: HomeViews.HERO,
-  setView: () => null,
-  hasRun: false,
-  setHasRun: () => null,
-  viewVariants: variants,
-});
+export function ViewProvider({ children }: { children: ReactNode }) {
+  const [view, setView] = useState<HomeViews>(HomeViews.HOME);
+  const [decodeHasRun, setDecodeHasRun] = useState<boolean>(false);
+  const [viewVariants, setViewVariants] = useState(viewVariantsInitial);
 
-export function useView(): IViewContext {
-  return useContext(ViewContext);
-}
+  const updateView = (direction: "next" | "prev") => {
+    const newView = getAdjacentView(view, direction);
+    if (!newView) return;
 
-interface IViewState {
-  children?: React.ReactNode;
-}
-interface IViewProps {
-  children?: ReactNode;
-}
+    // Get numerical positions of current and new view
+    const currentPosition = Object.values(HomeViews).indexOf(view);
+    const newPosition = Object.values(HomeViews).indexOf(newView);
 
-const IndustryProvider: FunctionComponent<IViewState> = ({
-  children,
-}: IViewProps) => {
-  const [view, setView] = useState<HomeViews>(HomeViews.HERO);
-  const [hasRun, setHasRun] = useState<boolean>(false);
-  const [viewVariants, setViewVariants] = useState<typeof variants>(variants);
-
-  const updateView = (newView: HomeViews) => {
-    const currentIndex = getViewIndex(view);
-    const newIndex = getViewIndex(newView);
-
-    const direction = newIndex > currentIndex ? -600 : 600;
+    // Determine animation direction based on position difference
+    const animationDirection = newPosition > currentPosition ? -600 : 600;
 
     const updatedVariants = {
-      ...variants,
-      enter: { ...variants.enter },
-      exit: { ...variants.exit, x: -direction },
+      ...viewVariants,
+      enter: { ...viewVariants.enter, x: -animationDirection }, // Enter from opposite direction
+      exit: { ...viewVariants.exit, x: animationDirection },
     };
 
+    // Update variants first
     setViewVariants(updatedVariants);
-    setView(newView);
+
+    // Use setTimeout to ensure variant update happens before view change
+    setTimeout(() => {
+      setView(newView);
+    }, 0);
   };
 
-  const contextProvider = {
-    view,
-    setView: updateView,
-    hasRun,
-    setHasRun,
-    viewVariants,
-  };
+  useEffect(() => {
+    console.log("viewIndex", Object.values(HomeViews).indexOf(view));
+  }, [view]);
+
   return (
-    <ViewContext.Provider value={contextProvider}>
+    <ViewContext.Provider
+      value={{
+        view,
+        setView,
+        decodeHasRun,
+        setDecodeHasRun,
+        viewVariants,
+        updateView,
+      }}
+    >
       {children}
     </ViewContext.Provider>
   );
-};
-export default IndustryProvider;
+}
+
+export function useView() {
+  const context = useContext(ViewContext);
+  if (context === undefined) {
+    throw new Error("useView must be used within a ViewProvider");
+  }
+  return context;
+}

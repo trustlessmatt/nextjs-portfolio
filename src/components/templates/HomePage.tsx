@@ -8,10 +8,9 @@ const HomePage: FC = () => {
 
   return (
     <AnimatePresence mode="wait">
-      {view === HomeViews.HERO && (
+      {view === HomeViews.HOME && (
         <motion.div
           className="w-full h-full flex flex-col mt-10 overflow-hidden"
-          style={{ height: `calc(100vh - 196px)` }}
           variants={viewVariants}
           key="hero"
           initial="enter"
@@ -45,7 +44,7 @@ const HomePage: FC = () => {
           <About />
         </motion.div>
       )}
-      {view === HomeViews.PRICING && <div>Pricing</div>}
+      {/* {view === HomeViews.PRICING && <div>Pricing</div>} */}
     </AnimatePresence>
   );
 };

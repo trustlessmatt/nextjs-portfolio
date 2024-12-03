@@ -19,10 +19,10 @@ const DecodedText: FC<DecodingTextProps> = ({
   );
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  const { hasRun, setHasRun } = useView();
+  const { decodeHasRun, setDecodeHasRun } = useView();
 
   useEffect(() => {
-    if (hasRun) {
+    if (decodeHasRun) {
       setDisplayedText(text);
       return;
     }
@@ -62,9 +62,9 @@ const DecodedText: FC<DecodingTextProps> = ({
         clearTimeout(nextCharTimeout);
       };
     } else {
-      setHasRun(true);
+      setDecodeHasRun(true);
     }
-  }, [currentIndex, text, duration, hasRun]);
+  }, [currentIndex, text, duration, decodeHasRun]);
 
   return (
     <p className={`text-white font-base-b ${className}`}>{displayedText}</p>

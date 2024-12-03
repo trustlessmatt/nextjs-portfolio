@@ -2,11 +2,10 @@ import { FC } from "react";
 import { DecodedText } from "@/components";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { smallClickAnimation } from "@/utils/framer.config";
-import { HomeViews, useView } from "@/providers/ViewProvider";
+import { useView } from "@/providers/ViewProvider";
 
 const Hero: FC = () => {
-  const { setView, hasRun } = useView();
+  const { updateView, decodeHasRun } = useView();
   return (
     <>
       <DecodedText
@@ -18,7 +17,7 @@ const Hero: FC = () => {
         className="w-full flex flex-col lg:items-end gap-12"
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: hasRun ? 0 : 2.5 }}
+        transition={{ duration: 0.8, delay: decodeHasRun ? 0 : 2.5 }}
       >
         <p className="text-secondary font-base sm:text-lg lg:text-3xl xl:text-[40px] xl:leading-[39px] sm:w-2/3 mt-8 lg:mt-20">
           I&apos;m <span className="text-data">Matt Pfeifer</span>. I build
@@ -37,8 +36,8 @@ const Hero: FC = () => {
             className="text-data font-base text-xl flex items-center gap-1"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: hasRun ? 1.2 : 4 }}
-            onClick={() => setView(HomeViews.PORTFOLIO)}
+            transition={{ duration: 0.4, delay: decodeHasRun ? 1.2 : 4 }}
+            onClick={() => updateView("next")}
           >
             <p>My Work</p>
             <ArrowRight className="animate-bounce-right" />
