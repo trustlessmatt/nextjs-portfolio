@@ -41,7 +41,7 @@ const Portfolio: FC = () => {
           title="DeGods Explorer"
           description="An NFT explorer for the DeGods collection on Ethereum."
           href="https://degods.com/explorer?id=&tab=overview"
-          tags={["React", "Typescript", "NextJS", "Tailwind", "ethers.js"]}
+          tags={["React", "Typescript", "NextJS", "Tailwind", "web3.js"]}
           media="/images/portfolio/DeGods_Explorer.png"
         />
         <Project
@@ -52,8 +52,8 @@ const Portfolio: FC = () => {
           media="/images/portfolio/All_In_Time.png"
         />
         <Project
-          title="Solan.ai"
-          description="A multi-modal LLM that can answer questions about Solana with real-time data."
+          title="solan.ai"
+          description="An AI agent that can answer questions about Solana with real-time data."
           href="https://solan.ai/"
           tags={[
             "AI",
@@ -69,7 +69,7 @@ const Portfolio: FC = () => {
           title="Degen Picks"
           description="A peer-to-peer prediction game on Solana."
           href="https://app.degenspicks.xyz/"
-          tags={["React", "Typescript", "NextJS", "Tailwind", "Solana"]}
+          tags={["React", "Typescript", "NextJS", "Tailwind", "web3.js"]}
           media="/images/portfolio/degenpicks.png"
         />
         <Project

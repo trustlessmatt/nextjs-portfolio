@@ -10,15 +10,15 @@ const Hero: FC = () => {
   return (
     <>
       <DecodedText
-        text="Hello, World!"
-        duration={3000}
+        text="Hello, World."
+        duration={2000}
         className="text-5xl lg:text-[100px] xl:text-[120px] font-base-black"
       />
       <motion.div
         className="w-full flex flex-col lg:items-end gap-12"
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: hasRun ? 0 : 3.5 }}
+        transition={{ duration: 0.8, delay: hasRun ? 0 : 2.5 }}
       >
         <p className="text-secondary font-base sm:text-lg lg:text-3xl xl:text-[40px] xl:leading-[39px] sm:w-2/3 mt-8 lg:mt-20">
           I&apos;m <span className="text-data">Matt Pfeifer</span>. I build
@@ -37,10 +37,10 @@ const Hero: FC = () => {
             className="text-data font-base text-xl flex items-center gap-1"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: hasRun ? 1.2 : 4.8 }}
+            transition={{ duration: 0.4, delay: hasRun ? 1.2 : 4 }}
             onClick={() => setView(HomeViews.PORTFOLIO)}
           >
-            <p>View My Work</p>
+            <p>My Work</p>
             <ArrowRight className="animate-bounce-right" />
           </motion.button>
         </div>
